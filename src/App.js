@@ -1,90 +1,60 @@
-import './App.css';
-import Navigation from './components/Navigation/Navigation'
-import Logo from './components/Logo/Logo'
-import Rank from './components/Rank/Rank'
-import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
-import { Particles } from 'react-tsparticles';
+import "./App.css";
+import Navigation from "./components/Navigation/Navigation";
+import Logo from "./components/Logo/Logo";
+import Rank from "./components/Rank/Rank";
+import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
+import { Component } from "react/cjs/react.production.min";
+import Clarifai from "clarifai";
 
-const particlesOptions = {
-  fpsLimit: 60,
-  interactivity: {
-    detectsOn: "canvas",
-    events: {
-      onClick: {
-        enable: true,
-        mode: "repulse",
-      },
-      resize: true,
-    },
-    modes: {
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-    },
-  },
-  particles: {
-    color: {
-      value: "#ffffff",
-    },
-    links: {
-      color: "#ffffff",
-      distance: 150,
-      enable: true,
-      opacity: 0.5,
-      width: 1,
-    },
-    collisions: {
-      enable: true,
-    },
-    move: {
-      direction: "none",
-      enable: true,
-      outMode: "bounce",
-      random: false,
-      speed: 3,
-      straight: false,
-    },
-    number: {
-      density: {
-        enable: true,
-        value_area: 800,
-      },
-      value: 70,
-    },
-    opacity: {
-      value: 1.5,
-    },
-    shape: {
-      type: "line",
-    },
-    size: {
-      random: true,
-      value: 3,
-    },
-  },
-  detectRetina: true,
-};
+const app = new Clarifai.App({
+  apiKey: "6db728b25ee34dcc98294847c516e5c4",
+});
 
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      input: "",
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
+  onInputChange = (event) => {
+    console.log(event.target.value);
+  };
 
-      <Particles
-        id="tsparticles"
-        options={particlesOptions}
-        className="particles"
-      />
+  onButtonSubmit = () => {
+    console.log("click");
+    app.models
+      .predict(
+        "6db728b25ee34dcc98294847c516e5c4",
+        "https://samples.clarifai.com/face-det.jpg"
+      )
+      .then(
+        function (response) {
+          console.log(response);
+        },
+        function (err) {}
+      );
+  };
 
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm />
-     {/* 
-      <FaceRecognition /> */}
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <div className="container">
+          <Navigation />
+          <Logo />
+          <Rank />
+          <ImageLinkForm
+            onInputChange={this.onInputChange}
+            onButtonSubmit={this.onButtonSubmit}
+          />
+        </div>
+
+        {/* 
+        <FaceRecognition /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
