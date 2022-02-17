@@ -1,0 +1,11 @@
+.Tilt{
+    background-color: rgba(128, 128, 128, 0.103);
+    border-radius: 8px;
+    border: 2px solid black;
+    margin: 20px;
+ 
+}
+
+img{
+    padding-top: 45px;
+}
