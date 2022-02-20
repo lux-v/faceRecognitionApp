@@ -3,7 +3,7 @@
     height: 100px;
     padding: 20px;
     border-radius: 8px;
-    background-color: rgba(159, 159, 252, 0.753);
+    background-color: rgba(0, 0, 0, 0.753);
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
@@ -14,8 +14,13 @@ button{
     transition: transform 200ms;
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border: none;
+    color:darkcyan
 }
-input{
+.input-imageLinkForm{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    border: none;
+    color:darkcyan
 }
