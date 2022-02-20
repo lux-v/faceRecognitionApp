@@ -17,7 +17,32 @@ class App extends Component {
     this.state = {
       input: "",
       imgUrl: "",
+      box: {},
+      
     };
+  }
+
+
+  calculateFaceLocation = (data) =>{
+
+     const faceLocation = data.rawData.outputs[0].data.regions[0].region_info.bounding_box;
+     const image = document.getElementById('inputImage');
+     const width = Number(image.width);
+     const height = Number(image.height);
+
+
+      return{
+        top_row: height * faceLocation.top_row,
+        left_col: width * faceLocation.left_col,
+        bottom_row: height - (height * faceLocation.bottom_row),
+        right_col: width - (width * faceLocation.right_col),
+      }
+
+  }
+
+  displayFaceLocation = (boxLocation) =>{
+    console.log(boxLocation); 
+    this.setState({box:boxLocation});
   }
 
   onInputChange = (event) => {
@@ -25,21 +50,18 @@ class App extends Component {
   };
 
   onButtonSubmit = () => {
+
     console.log("click");
     this.setState({ imgUrl: this.state.input });
+
     app.models
       .predict(
-        Clarifai.FACE_DETECT_MODEL,
-        "https://www.pngall.com/wp-content/uploads/5/Beautiful-Woman-Face-PNG-File.png"
+        "a403429f2ddf4b49b307e318f00e528b",
+        //this.state.input
+        this.state.input
       )
-      .then(
-        function (response) {
-          console.log(
-            response.rawData.outputs[0].data.regions[0].region_info.bounding_box
-          );
-        },
-        function (err) {}
-      );
+      .then( response => this.displayFaceLocation(this.calculateFaceLocation(response)))
+      .catch(err => console.log(err))
   };
 
   render() {
@@ -53,11 +75,13 @@ class App extends Component {
             onInputChange={this.onInputChange}
             onButtonSubmit={this.onButtonSubmit}
           />
+
+          <FaceRecognition boxLocation= {this.state.box} imageUrl={this.state.imgUrl} />
         </div>
-        <FaceRecognition imageUrl={this.state.imgUrl} />
       </div>
     );
   }
 }
 
 export default App;
+

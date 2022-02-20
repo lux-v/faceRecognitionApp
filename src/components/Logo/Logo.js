@@ -12,7 +12,7 @@ const Logo = () => {
         style={{ height: 150, width: 150 }}
       >
         <div className="Tilt-inner">
-          <img src={logo} alt="logo" />
+          <img className="slika" src={logo} alt="logo" />
         </div>
       </Tilt>
     </div>

@@ -4,6 +4,7 @@ import "./ImageLinkForm.css";
 const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
   return (
     <div>
+      
       <p className="imageLinkFormComponent">
         This Magic Brain will detect faces in your pictures.
       </p>
@@ -15,6 +16,7 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
             onChange={onInputChange}
           />
           <button
+            id="submit-button"
             style={{ height: "42px", width: "30%" }}
             onClick={onButtonSubmit}
           >
