@@ -11,7 +11,7 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
       <div className="center">
         <div className="wrapper center">
           <input
-            className="input-imageLinkForm pa2 input-reset ba bg-white hover-bg-white hover-black w-100"
+            className="input-imageLinkFormpa2 input-reset ba bg-white hover-bg-white hover-black w-100"
             type="text"
             style={{ height: "42px", width: "70%" }}
             onChange={onInputChange}
