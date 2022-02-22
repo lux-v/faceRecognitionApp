@@ -1,15 +1,14 @@
-.Tilt{
-    /* background-color: rgba(128, 128, 128, 0.103); */
-    background-color: rgba(255, 255, 255, 0.664);
-    border-radius: 8px;
-    border: 2px solid black;
-    margin: 20px;
- 
+.Tilt {
+  /* background-color: rgba(128, 128, 128, 0.103); */
+  background-color: rgba(255, 255, 255, 0.664);
+  border-radius: 8px;
+  border: 2px solid black;
+  margin: 20px;
 }
 
-.slika{
-    padding-top: 45px;
+.slika {
+  padding-top: 45px;
 }
-.logoComponent{
-    position: absolute;
+.logoComponent {
+  position: absolute;
 }
